@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css" />
+    <style>
+      #taskList {
+        max-width: 600px;
+        margin: auto;
+      }
+      #taskInput {
+        width: calc(100% - 70px);
+      }
+      li {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #fff4;
+      }
+      button {
+        margin-left: auto;
+        display: inline;
+        width: 12em;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <h1>To-Do List</h1>
+      <form id="taskForm">
+        <input id="taskInput" type="text" placeholder="Add a new task..." required />
+        <button type="submit">Add</button>
+      </form>
+      <ul id="taskList"></ul>
+    </main>
+
+    <script>
+      // Get references to elements
+      const taskForm = document.getElementById("taskForm");
+      const taskInput = document.getElementById("taskInput");
+      const taskList = document.getElementById("taskList");
+
+      // Load tasks from localStorage
+      let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+      // Function to render tasks
+      function renderTasks() {
+        taskList.innerHTML = "";
+        tasks.forEach((task, index) => {
+          const listItem = document.createElement("li");
+          listItem.innerHTML = `
+          <label>
+            <input type="checkbox" ${task.completed ? "checked" : ""} data-index="${index}">
+            <span>${task.text}</span>
+          </label>
+          <button class="contrast" data-index="${index}">Delete</button>
+        `;
+          taskList.appendChild(listItem);
+        });
+      }
+
+      // Function to save tasks to localStorage
+      function saveTasks() {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      }
+
+      // Handle form submission
+      taskForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const newTask = {
+          text: taskInput.value.trim(),
+          completed: false,
+        };
+        tasks.push(newTask);
+        taskInput.value = "";
+        saveTasks();
+        renderTasks();
+      });
+
+      // Handle task interactions
+      taskList.addEventListener("click", (event) => {
+        const index = event.target.dataset.index;
+        if (event.target.tagName === "BUTTON") {
+          // Delete task
+          tasks.splice(index, 1);
+        } else if (event.target.tagName === "INPUT") {
+          // Toggle completion
+          tasks[index].completed = event.target.checked;
+        }
+        saveTasks();
+        renderTasks();
+      });
+
+      // Initial render
+      renderTasks();
+    </script>
+  </body>
+</html>

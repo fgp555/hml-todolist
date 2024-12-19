@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - To-Do List</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        padding: 20px;
+      }
+      .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        font-size: 2rem;
+        color: #333;
+      }
+      p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #555;
+      }
+      ul {
+        list-style-type: disc;
+        margin-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <h1>About To-Do List App</h1>
+      <p>
+        The To-Do List app helps you stay organized and keep track of your daily tasks.
+        You can add new tasks, mark them as complete, and delete them as you go. This app
+        uses your browser's local storage to save your tasks, so you can access them even
+        after refreshing the page.
+      </p>
+
+      <h2>Features:</h2>
+      <ul>
+        <li>Add new tasks to your list.</li>
+        <li>Mark tasks as completed by checking the checkbox.</li>
+        <li>Delete tasks when they are no longer needed.</li>
+        <li>Tasks are stored in your browser's local storage, so they persist between sessions.</li>
+      </ul>
+
+      <h2>How It Works:</h2>
+      <p>
+        The app relies on JavaScript to manage the tasks and local storage. When you add a task,
+        it is saved to the local storage, and when you load the page again, the tasks are loaded
+        from local storage. You can toggle completion status by clicking the checkbox next to each
+        task, and delete tasks by clicking the "Delete" button next to them.
+      </p>
+
+      <h2>Technologies Used:</h2>
+      <ul>
+        <li>HTML5</li>
+        <li>CSS (with Pico CSS for styling)</li>
+        <li>JavaScript</li>
+        <li>LocalStorage API for saving tasks between sessions</li>
+      </ul>
+
+      <h2>About the Developer:</h2>
+      <p>
+        This app was created by a developer passionate about web development and productivity tools.
+        If you have any questions or feedback, feel free to reach out.
+      </p>
+    </main>
+  </body>
+</html>
